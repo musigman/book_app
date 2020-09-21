@@ -14,22 +14,23 @@ const app = express();
 //     console.error(err);
 // });
 
-app.listen(PORT, () => {
-    console.log(`listening on ${PORT}`);
-})
 
 // bring up middleware
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 app.use(express.urlencoded({extended:true}));
 
-function renderHomePage(request, response) {
-response.render('pages/index');
+//routes to be added
+app.get ('/', renderHomePage);
 
+function renderHomePage(request, response) {
+  response.render('pages/index');
+  
 }
 
 
-//routes to be added
-app.get ('/, renderHomePage');
+app.listen(PORT, () => {
+    console.log(`listening on ${PORT}`);
+})
 
 
