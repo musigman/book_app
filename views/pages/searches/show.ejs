@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Your Search Results</title>
+  </head>
+  <body>
+    <main>
+      <div>
+        <% arrayOfBookObjects.forEach(book => { %>
+          <img src="<%= book.imageURL %>" />
+          <h2><%= book.title %></h2>
+          <h3><%= book.authors %></h3>
+          <p><%= book.description %></p>
+        <% }) %>
+      </div>
+    </main>
+  </body>
+</html>
