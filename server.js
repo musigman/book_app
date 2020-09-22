@@ -22,18 +22,24 @@ app.use(express.static('./public'));
 app.use(express.urlencoded({extended:true}));
 
 //routes to be added
-app.get('/', renderSearchPage);
-app.get('/test', renderTestPage);
+// app.get('/search', renderSearchPage);
+app.get('/', renderHomePage);
 app.get('/searches/new', renderSearchPage);
 app.post('/searches', handleNewSearch);
+app.get('/pages/error', handleErrorPage);
+app.get('*', handleErrorPage);
 // app.get('/searches/show', handleSearchResults);
 
-function renderTestPage(request, response) {
+function renderHomePage(request, response) {
   response.render('pages/index');
 }
 
 function renderSearchPage(request, response) {
   response.render('pages/searches/new.ejs');
+}
+
+function handleErrorPage(request, response) {
+  response.render('pages/error.ejs');
 }
 
 // function handleSearchResults(request, response) {
@@ -59,17 +65,16 @@ function handleNewSearch(request,response) {
       let arrayOfBookObjects = arrayOfBooKObjectsFromAPI.map( value => new Book(value));
 
       // response.send(arrayOfBookObjects);
-      // response.redirect('/searches/show'); 
+      // response.redirect('/searches/show');
       response.render('pages/searches/show.ejs', {arrayOfBookObjects: arrayOfBookObjects});
 
     })
     .catch( (error) => {
-      response.status(500).send('Sorry, something went wrong  -  error code 6048');
+      console.log('Sorry, something went wrong  -  error code 6048; we think no results from API')
+      // response.status(500).send('Sorry, something went wrong  -  error code 6048');
+      response.status(500).redirect('pages/error');      
     });
 }
-
-
-
 
 
 
@@ -109,7 +114,6 @@ function Book(bookObject){
   // console.log(imageURL);
 
 }
-
 
 app.listen(PORT, () => {
     console.log(`listening on ${PORT}`);

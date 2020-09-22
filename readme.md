@@ -97,19 +97,53 @@ Number and name of feature: 3|setup google api and make constructor for Books; r
 
 Estimate of time needed to complete: 1.5-3 hours
 
-Start time: ~5:30pm
+Start time: ~5:30pm; 12:45pm
 
-Finish time: 7:00pm
+Finish time: 7:00pm; 3:05pm
 
-Actual time needed to complete: 1.5 plus tuesday when finish
+Actual time needed to complete: 1.5 +2:20 = 3:50 total (still missing http -> https)
 
 
-Number and name of feature: 4________________________________
+Number and name of feature: 4|create an error view
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 30 minutes
 
-Start time: 2:20pm_____
+Start time: 3:10pm
 
-Finish time: _____
+Finish time: 3:50pm minus 10 minute break
 
-Actual time needed to complete: _____
+Actual time needed to complete: 30 minutes
+
+
+Number and name of feature: 5|CSS
+
+Estimate of time needed to complete: 1-2 hours... passing to move on to the new content of Lab12
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+
+Number and name of feature: 6|rooting of index
+
+Estimate of time needed to complete: 10 minutes
+
+Start time: 4:02
+
+Finish time: 4:05
+
+Actual time needed to complete: 3 minutes
+
+
+** Lab12
+Number and name of feature: 1|
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
