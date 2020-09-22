@@ -46,10 +46,16 @@ function handleNewSearch(request,response) {
   console.log('url search by us: ',url);
   superagent.get(url)
     .then(data => {
-      console.log(data.body.item);
+      console.log(data.body.items);
     })
     // .catch( )
 }
+
+http://www.google.com
+https://www.google.com
+
+
+
 
 function Book(bookObject){
   this.title = book.title ? book.title : 'Title not found.';
