@@ -44,24 +44,34 @@ function handleNewSearch(request,response) {
   if(searchType === 'title'){url += `+intitle:${searchQuery}`}
   if(searchType === 'author'){ url += `+inauthor:${searchQuery}`}
   console.log('url search by us: ',url);
-  superagent.get(url)
+  superagent
+  .get(url)
     .then(data => {
       console.log(data.body.items);
+      // response.send(data.body.items);
+
+      const arrayOfBooKObjectsFromAPI = data.body.items;
+      let arrayOfBookObjects = arrayOfBooKObjectsFromAPI.map( value => new Book(value));
+
+      response.send(arrayOfBookObjects);
+            
     })
-    // .catch( )
+    .catch( (error) => {
+      response.status(500).send('Sorry, something went wrong  -  error code 6048');
+    });
 }
 
-http://www.google.com
-https://www.google.com
+// http://www.google.com
+// https://www.google.com
 
 
 
 
 function Book(bookObject){
-  this.title = book.title ? book.title : 'Title not found.';
-  this.author = book.author ? book.author : 'No author credited.';
-  this.imageURL = book.imageURL ? book.imageURL : 'https://i.imgur.com/J5LVHEL.jpg';
-  this.description = book.description ? book.description : "No summary available.";
+  this.title = bookObject.volumeInfo.title ? bookObject.volumeInfo.title : 'Title not found.';
+  this.authors = bookObject.volumeInfo.authors ? bookObject.volumeInfo.authors : 'No author credited.';
+  this.imageURL = bookObject.volumeInfo.imageLinks.smallThumbnail ? bookObject.volumeInfo.imageLinks.smallThumbnail : 'https://i.imgur.com/J5LVHEL.jpg';
+  this.description = bookObject.volumeInfo.description ? bookObject.volumeInfo.description : "No summary available.";
 }
 
 
