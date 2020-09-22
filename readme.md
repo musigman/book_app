@@ -1,21 +1,21 @@
-Number and name of feature: 1________________________________
+Number and name of feature: 1: scaffold server, libraries, proof of life on heroku
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1.5-2 hours
 
 Start time: 1:50pm_____
 
-Finish time: _____
+Finish time: 4:58; with one hour break
 
-Actual time needed to complete: _____
-
-
+Actual time needed to complete: 3 hours
 
 
 
 
-Number and name of feature: 2________________________________
 
-Estimate of time needed to complete: _____
+
+Number and name of feature: 2: create forms and deploy
+
+Estimate of time needed to complete: 1-1.5 hours 
 
 Start time: 2:20pm_____
 

@@ -1,6 +1,7 @@
 'use strict';
 
 require('dotenv').config();
+const { response } = require('express');
 const express = require('express');
 require('ejs');
 const superagent = require('superagent');
@@ -21,11 +22,16 @@ app.use(express.static('./public'));
 app.use(express.urlencoded({extended:true}));
 
 //routes to be added
-app.get ('/', renderHomePage);
+app.get('/', renderSearchPage);
+app.get('/test', renderTestPage);
+app.get('/searches/new', renderSearchPage);
 
-function renderHomePage(request, response) {
+function renderTestPage(request, response) {
   response.render('pages/index');
-  
+}
+
+function renderSearchPage(request, response) {
+  response.render('pages/searches/new.ejs');
 }
 
 
