@@ -25,6 +25,7 @@ app.use(express.urlencoded({extended:true}));
 app.get('/', renderSearchPage);
 app.get('/test', renderTestPage);
 app.get('/searches/new', renderSearchPage);
+app.post('/searches', handleNewSearch);
 
 function renderTestPage(request, response) {
   response.render('pages/index');
@@ -32,6 +33,17 @@ function renderTestPage(request, response) {
 
 function renderSearchPage(request, response) {
   response.render('pages/searches/new.ejs');
+}
+
+function handleNewSearch {
+
+}
+
+function Book(bookObject){
+  this.title = book.title ? book.title : 'Title not found.';
+  this.author = book.author ? book.author : 'No author credited.';
+  this.imageURL = book.imageURL ? book.imageURL : 'https://i.imgur.com/J5LVHEL.jpg';
+  this.description = book.description ? book.description : "No summary available.";
 }
 
 
