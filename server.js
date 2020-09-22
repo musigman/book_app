@@ -35,8 +35,20 @@ function renderSearchPage(request, response) {
   response.render('pages/searches/new.ejs');
 }
 
-function handleNewSearch {
+function handleNewSearch(request,response) {
+  console.log(request.body);
+  const searchQuery = request.body.search[0];
+  const searchType = request.body.search[1];
 
+  let url = `https://www.googleapis.com/books/v1/volumes?q=`;
+  if(searchType === 'title'){url += `+intitle:${searchQuery}`}
+  if(searchType === 'author'){ url += `+inauthor:${searchQuery}`}
+  console.log('url search by us: ',url);
+  superagent.get(url)
+    .then(data => {
+      console.log(data.body.item);
+    })
+    // .catch( )
 }
 
 function Book(bookObject){
