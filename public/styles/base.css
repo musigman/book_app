@@ -1,8 +1,17 @@
 * {
-  background-color: lightblue;
+  box-sizing: border-box;
+  background-color: rgb(232, 240, 243);
 }
-
-h1 {
-  font-size: 2em;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+body {
+  font-family: helvetica;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 480px;
+  margin: auto; 
 }
+div {
+  border: 2px darkgrey solid;
+  text-align: center;
+  
+  }
