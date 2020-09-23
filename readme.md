@@ -27,6 +27,8 @@ City Explorer brings answers to all of these questions and more with one simple 
 ## Architecture
 This project develops a backend information gathering, management, and aggregation system to provide data to an existing front end interface called City Explorer.  The information is collected across 6 APIs and consolidated using object constructors.  The backend is written in JavaScript using Node.js.  Libraries used in this server include express, dotenv, and cors.
 
+A books.sql file was created and used to create the books table in the postgres database called books_app.
+
 
 ## Change Log
 09-14-2020 4:50pm - Created repo, populated file structure, set up server.js and supporting files (package.json; lock-package.json; .env).
@@ -138,12 +140,12 @@ Actual time needed to complete: 3 minutes
 
 
 ** Lab12
-Number and name of feature: 1|
+Number and name of feature: 1| set up database, index to show books
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 1.5-2 hours
 
-Start time: 
+Start time: 5:25pm
 
-Finish time: 
+Finish time: 7pm
 
-Actual time needed to complete: 
+Actual time needed to complete: 1:35 plus more to do...

@@ -23,16 +23,28 @@ app.use(express.urlencoded({extended:true}));
 
 //routes to be added
 // app.get('/search', renderSearchPage);
-app.get('/', renderHomePage);
+app.get('/', renderHomePageWithDBBooks);
 app.get('/searches/new', renderSearchPage);
 app.post('/searches', handleNewSearch);
 app.get('/pages/error', handleErrorPage);
 app.get('*', handleErrorPage);
 // app.get('/searches/show', handleSearchResults);
 
-function renderHomePage(request, response) {
+function renderHomePageWithDBBooks(request,response) {
+  // get the books from the database
+
+  // package them appropriately
+
+
+  // send them to the index as we call it
+  // renderHomePage(request, response);
   response.render('pages/index');
+  // , {arrayOfBooksFromDB: arrayOfBooksFromDB});
 }
+
+// function renderHomePage(request, response) {
+//   response.render('pages/index');
+// }
 
 function renderSearchPage(request, response) {
   response.render('pages/searches/new.ejs');
@@ -76,6 +88,16 @@ function handleNewSearch(request,response) {
     });
 }
 
+// function makeImageLinkSecure(imageLink) {
+//   const linkFromAPI = 'https://www.google.com';
+//   let regex = /(http:)/;
+//   var imageURL = 'cat';
+//   if (regex.test(linkFromAPI)) {
+//     imageURL = linkFromAPI.replace(regex,'https:');
+//   } else {
+//     imageURL = linkFromAPI;
+//   }
+// }
 
 
 function Book(bookObject){
@@ -84,35 +106,10 @@ function Book(bookObject){
   this.imageURL = bookObject.volumeInfo.imageLinks.smallThumbnail ? bookObject.volumeInfo.imageLinks.smallThumbnail : 'https://i.imgur.com/J5LVHEL.jpg';
   this.description = bookObject.volumeInfo.description ? bookObject.volumeInfo.description : "No summary available.";
 
-  // trying to figure out http -> https
-
-  // const str1 = 'http://www.google.com';
-  // const str2 = 'https://www.google.com';
-
   // let regex = /(http:)/;
-
-  // console.log(str1);
-  // console.log(str2);
-  // console.log(regex);
-
-  // console.log('str1: ',regex.test(str1));
-  // console.log('str2: ',regex.test(str2));
-
-  // if (regex.test(str1) === 1) {
-  //   let imageURL = str1.replace(regex,'https:');
-  //   str1.replace(regex,'https:');
-
-  // } else {
-  //   let imageURL = str1;
+  // if (regex.test(linkFromAPI)) {
+  //   this.imageURL = this.imageURL.replace(regex,'https:');
   // }
-
-  // // str.replace(regex,'-');
-  // console.log('end states');
-  // console.log(str1);
-  // console.log(str2);
-  // console.log(regex);
-  // console.log(imageURL);
-
 }
 
 app.listen(PORT, () => {
