@@ -8,21 +8,22 @@
     <link href="/styles/base.css" rel="stylesheet"/>
     <link href="/styles/layout.css" rel="stylesheet"/>
     <link href="/styles/modules.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
   <h1>Excellent Reading Adventure Test</h1>
   <div>
     <ul>
 
-      allBooksFromDB.forEach(book => {
+
+
+      <% allBooksFromDB.forEach(book => { %>
       <li>
-        <img src="book.imageURL" alt="picture of book cover" title="picture of book cover">
-        <h2>book.title</h2>
-        <h3>book.author</h3>
+        <img src=<%= book.image_url %> alt="picture of book cover" title="picture of book cover">
+        <h2><%= book.title %></h2>
+        <h3><%= book.author %></h3>
       </li>
-    })
-
-
+      <% }) %>
 
 
     </ul>

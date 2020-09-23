@@ -44,7 +44,8 @@ function renderHomePageWithDBBooks(request,response) {
     
       // send them to the index as we call it
       // renderHomePage(request, response);
-      response.render('pages/index');
+
+      response.status(200).render('pages/index',{allBooksFromDB: allBooksFromDB});
       // , {arrayOfBooksFromDB: arrayOfBooksFromDB});
 
 
