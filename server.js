@@ -5,15 +5,15 @@ const { response } = require('express');
 const express = require('express');
 require('ejs');
 const superagent = require('superagent');
-// const pg = require('pg');
+const pg = require('pg');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-// const databaseUrl = process.env.DATABASE_URL;
-// const client = new pg.Client(databaseUrl);
-// client.on('error', (err) => {
-//     console.error(err);
-// });
+const databaseUrl = process.env.DATABASE_URL;
+const client = new pg.Client(databaseUrl);
+client.on('error', (err) => {
+    console.error(err);
+});
 
 
 // bring up middleware
@@ -32,14 +32,25 @@ app.get('*', handleErrorPage);
 
 function renderHomePageWithDBBooks(request,response) {
   // get the books from the database
+  const sql = `SELECT * FROM books;`;
+  client.query(sql)
+    .then(booksIncomingFromDB => {
+      console.log(booksIncomingFromDB.rows);
+      const allBooksFromDB = booksIncomingFromDB.rows;
 
-  // package them appropriately
+
+      // package them appropriately; get data out and structure it appropriately.
+    
+    
+      // send them to the index as we call it
+      // renderHomePage(request, response);
+
+      response.status(200).render('pages/index',{allBooksFromDB: allBooksFromDB});
+      // , {arrayOfBooksFromDB: arrayOfBooksFromDB});
 
 
-  // send them to the index as we call it
-  // renderHomePage(request, response);
-  response.render('pages/index');
-  // , {arrayOfBooksFromDB: arrayOfBooksFromDB});
+    })
+
 }
 
 // function renderHomePage(request, response) {
@@ -112,8 +123,18 @@ function Book(bookObject){
   // }
 }
 
-app.listen(PORT, () => {
-    console.log(`listening on ${PORT}`);
-})
+
+client.connect()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`listening on ${PORT}`);
+    })
+  })
+  // do we need to have a catch here?  is it needed/required?
+  .catch( (error) => {
+    console.log('Sorry, something went wrong  -  error code 8934; we think no we were unable to connect to the postgres database')
+    // response.status(500).send('Sorry, something went wrong  -  error code 6048');
+    response.status(500).redirect('pages/error');
+  });
 
 
