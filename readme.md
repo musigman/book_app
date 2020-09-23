@@ -139,13 +139,13 @@ Finish time: 4:05
 Actual time needed to complete: 3 minutes
 
 
-** Lab12
+## Lab12 ##
 Number and name of feature: 1| set up database, index to show books
 
 Estimate of time needed to complete: 1.5-2 hours
 
-Start time: 5:25pm
+Start time: 5:25pm; 1:25pm
 
-Finish time: 7pm
+Finish time: 7pm; xx
 
 Actual time needed to complete: 1:35 plus more to do...
