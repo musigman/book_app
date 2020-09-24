@@ -146,6 +146,52 @@ Estimate of time needed to complete: 1.5-2 hours
 
 Start time: 5:25pm; 1:25pm
 
-Finish time: 7pm; xx
+Finish time: 7pm; 3:30
 
-Actual time needed to complete: 1:35 plus more to do...
+Actual time needed to complete: 3:35
+
+
+Number and name of feature: 2| Detailed single book view page, use book presentation partial, menu button to book collection
+
+Estimate of time needed to complete: 1.5-2 hours
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+
+Number and name of feature: 3| 
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+Number and name of feature: 4| 
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+Number and name of feature: 5| 
+
+Estimate of time needed to complete: 
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
+
+
+
+## Lab 13 ##
