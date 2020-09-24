@@ -4,6 +4,7 @@ require('dotenv').config();
 const { response } = require('express');
 const express = require('express');
 require('ejs');
+const methodoverride = require('method-override');
 const superagent = require('superagent');
 const pg = require('pg');
 
@@ -20,6 +21,7 @@ client.on('error', (err) => {
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 app.use(express.urlencoded({extended:true}));
+app.use(methodoverride('_method'));
 
 //routes to be added
 // app.get('/search', renderSearchPage);
@@ -28,14 +30,32 @@ app.get('/searches/new', renderSearchPage);
 app.post('/searches', handleNewSearch);
 app.get('/pages/error', handleErrorPage);
 app.get('/books/:id', renderIndividualBookDisplay);
+app.delete('/delete/:id', deleteBookFromDB);
 app.get('*', handleErrorPage);
 // app.get('/searches/show', handleSearchResults);
 
-function renderIndividualBookDisplay(request,response) {
 
-  console.log(request.params);
+function deleteBookFromDB(request,response) {
+  const id = request.params.id;
+  // https://www.w3schools.com/sql/sql_delete.asp
+  const sql = `DELETE FROM books WHERE id=$1;`;
+  const safeValues = [id];
+  client.query(sql, safeValues)
+    .then(results => {
+      console.log('results from deleting book: ',results);
+      response.status(200).redirect('/');   
+    })
+    .catch( (error) => {
+      console.log('error getting deleting book from DB',error);
+      response.status(500).redirect('pages/error');    
+    });
+}
+
+
+function renderIndividualBookDisplay(request,response) {
+  // console.log(request.params);
   const id = request.params.id; 
-  console.log(request.params.id);
+  // console.log(request.params.id);
 
   const sql = `SELECT * FROM books WHERE id=$1;`;
   const safeValues = [id];
@@ -46,7 +66,7 @@ function renderIndividualBookDisplay(request,response) {
       response.status(200).render('pages/books/show',{book: myChosenBook});
     })
     .catch( (error) => {
-      console.log('error getting single book page');
+      console.log('error getting single book page',error);
       response.status(500).redirect('pages/error');    
     });
 }

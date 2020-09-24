@@ -7,4 +7,8 @@
   <h3><%= book.author %></h3>
   <p><%= book.description %></p>
   <h5><%= book.isbn %></h5>
+  <form id="deleteForm" action="/delete/<%= book.id %>?_method=DELETE" method="post">
+    <button type="submit" id="deleteButton">Delete Book</button>
+  </form>
+
 </section>

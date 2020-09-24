@@ -155,11 +155,11 @@ Number and name of feature: 2| Detailed single book view page, use book presenta
 
 Estimate of time needed to complete: 1.5-2 hours
 
-Start time: 
+Start time: 3:45
 
-Finish time: 
+Finish time: 6:00 
 
-Actual time needed to complete: 
+Actual time needed to complete: 2:15 with 2 of 5 checkboxes complete
 
 
 Number and name of feature: 3| 
@@ -195,3 +195,14 @@ Actual time needed to complete:
 
 
 ## Lab 13 ##
+
+
+Number and name of feature: 1| delete something from DB
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 
+
+Finish time: 
+
+Actual time needed to complete: 
