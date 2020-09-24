@@ -4,6 +4,7 @@ require('dotenv').config();
 const { response } = require('express');
 const express = require('express');
 require('ejs');
+const methodoverride = require('method-override');
 const superagent = require('superagent');
 const pg = require('pg');
 
@@ -20,6 +21,7 @@ client.on('error', (err) => {
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
 app.use(express.urlencoded({extended:true}));
+app.use(methodoverride('_method'));
 
 //routes to be added
 // app.get('/search', renderSearchPage);
@@ -27,8 +29,47 @@ app.get('/', renderHomePageWithDBBooks);
 app.get('/searches/new', renderSearchPage);
 app.post('/searches', handleNewSearch);
 app.get('/pages/error', handleErrorPage);
+app.get('/books/:id', renderIndividualBookDisplay);
+app.delete('/delete/:id', deleteBookFromDB);
 app.get('*', handleErrorPage);
 // app.get('/searches/show', handleSearchResults);
+
+
+function deleteBookFromDB(request,response) {
+  const id = request.params.id;
+  // https://www.w3schools.com/sql/sql_delete.asp
+  const sql = `DELETE FROM books WHERE id=$1;`;
+  const safeValues = [id];
+  client.query(sql, safeValues)
+    .then(results => {
+      console.log('results from deleting book: ',results);
+      response.status(200).redirect('/');   
+    })
+    .catch( (error) => {
+      console.log('error getting deleting book from DB',error);
+      response.status(500).redirect('pages/error');    
+    });
+}
+
+
+function renderIndividualBookDisplay(request,response) {
+  // console.log(request.params);
+  const id = request.params.id; 
+  // console.log(request.params.id);
+
+  const sql = `SELECT * FROM books WHERE id=$1;`;
+  const safeValues = [id];
+  client.query(sql, safeValues)
+    .then(results => {
+      console.log('results from serverjs: ',results);
+      const myChosenBook = results.rows[0];
+      response.status(200).render('pages/books/show',{book: myChosenBook});
+    })
+    .catch( (error) => {
+      console.log('error getting single book page',error);
+      response.status(500).redirect('pages/error');    
+    });
+}
 
 function renderHomePageWithDBBooks(request,response) {
   // get the books from the database
@@ -37,25 +78,15 @@ function renderHomePageWithDBBooks(request,response) {
     .then(booksIncomingFromDB => {
       console.log(booksIncomingFromDB.rows);
       const allBooksFromDB = booksIncomingFromDB.rows;
-
-
-      // package them appropriately; get data out and structure it appropriately.
-    
-    
       // send them to the index as we call it
-      // renderHomePage(request, response);
-
       response.status(200).render('pages/index',{allBooksFromDB: allBooksFromDB});
-      // , {arrayOfBooksFromDB: arrayOfBooksFromDB});
-
-
     })
-
+    .catch( (error) => {
+      console.log('error getting books from DB');
+      response.status(500).redirect('pages/error');    
+    });
 }
 
-// function renderHomePage(request, response) {
-//   response.render('pages/index');
-// }
 
 function renderSearchPage(request, response) {
   response.render('pages/searches/new.ejs');
