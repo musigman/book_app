@@ -197,12 +197,23 @@ Actual time needed to complete:
 ## Lab 13 ##
 
 
-Number and name of feature: 1| delete something from DB
+Number and name of feature: 1| 
 
-Estimate of time needed to complete: 1 hour
+Estimate of time needed to complete: 
 
 Start time: 
 
 Finish time: 
 
 Actual time needed to complete: 
+
+
+Number and name of feature: 2| delete something from DB
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 6:00
+
+Finish time: 6:45
+
+Actual time needed to complete: 45 minutes
