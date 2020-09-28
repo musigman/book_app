@@ -30,10 +30,19 @@ app.get('/searches/new', renderSearchPage);
 app.post('/searches', handleNewSearch);
 app.get('/pages/error', handleErrorPage);
 app.get('/books/:id', renderIndividualBookDisplay);
+app.post('/books', addBookToDatabase);
 app.delete('/delete/:id', deleteBookFromDB);
 app.get('*', handleErrorPage);
 // app.get('/searches/show', handleSearchResults);
 
+function addBookToDatabase(request, response) {
+  //get info on which book user wants added
+  console.log('data passed for adding book: ', request.body);
+  //add book to DB
+
+  //redirect user to detail page for selected book
+
+}
 
 function deleteBookFromDB(request,response) {
   const id = request.params.id;
@@ -149,6 +158,11 @@ function Book(bookObject){
   this.authors = bookObject.volumeInfo.authors ? bookObject.volumeInfo.authors : 'No author credited.';
   this.imageURL = bookObject.volumeInfo.imageLinks.smallThumbnail ? bookObject.volumeInfo.imageLinks.smallThumbnail : 'https://i.imgur.com/J5LVHEL.jpg';
   this.description = bookObject.volumeInfo.description ? bookObject.volumeInfo.description : "No summary available.";
+  this.isbn = bookObject.volumeInfo.isbn ? bookObject.volumeInfo.isbn : "No summary available.";
+  // IN SQL:
+  // author VARCHAR(255),
+  // image_url TEXT,
+
 
   // let regex = /(http:)/;
   // if (regex.test(linkFromAPI)) {

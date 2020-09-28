@@ -7,11 +7,25 @@
     <main>
       <div>
         <% arrayOfBookObjects.forEach(book => { %>
-          <img src="<%= book.imageURL %>" />
-          <h2><%= book.title %></h2>
-          <h3><%= book.authors %></h3>
-          <p><%= book.description %></p>
-          /* add button to save book here with the hidden form; all values are the same; book values the same, submit button has visible label "save book" */
+          <form action="books" method="post">
+            <img src="<%= book.imageURL %>" />
+            <h2><%= book.title %></h2>
+            <h3><%= book.authors %></h3>
+            <p><%= book.description %></p>
+            <!-- add button to save book here with the hidden form; all values are the same; book values the same, submit button has visible label "save book" -->
+            <input type="hidden" name="bookToAdd" value="<%= book.title %>">
+            <input type="hidden" name="bookToAdd" value="<%= book.title %>">
+            <input type="hidden" name="bookToAdd" value="<%= book.title %>">
+            <input type="hidden" name="bookToAdd" value="<%= book.title %>">
+            <input type="hidden" name="bookToAdd" value="<%= book.title %>">
+            id
+            title ,
+            author (),
+            image_url ,
+            description ,
+            isbn ()
+            <button type="submit">Save Book</button>
+          </form>
         <% }) %>
       </div>
     </main>
