@@ -3,33 +3,31 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excellent Reading Adventure Test</title>
-    <link href="/styles/reset.css" rel="stylesheet"/>
+    <title>Excellent Reading Adventure</title>
+    <!-- <link href="/styles/reset.css" rel="stylesheet"/> -->
     <link href="/styles/base.css" rel="stylesheet"/>
     <link href="/styles/layout.css" rel="stylesheet"/>
     <link href="/styles/modules.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Excellent Reading Adventure Test</h1>
+  <h1>Excellent Reading Adventure</h1>
   <h4><%= allBooksFromDB.length %> Saved Books</h4>
   <div>
     <ul>
 
-
-
       <% allBooksFromDB.forEach(book => { %>
-      <li>
-        <img src=<%= book.image_url %> alt="picture of book cover" title="picture of book cover">
-        <h2><%= book.title %></h2>
-        <h3><%= book.author %></h3>
-        <a href="/books/<%= book.id %>">See Book Details</a>
-      </li>
-      <% }) %>
 
+        <%- include('books/detail', {book: book}) %>
+
+      <% }) %>
 
     </ul>
   </div>
+  <div>
+    <a href="/searches/new">Begin a New Search</a>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>
 

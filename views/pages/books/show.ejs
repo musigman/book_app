@@ -3,20 +3,25 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excellent Reading Adventure Test</title>
-    <link href="/styles/reset.css" rel="stylesheet"/>
+    <title>Excellent Reading Adventure</title>
+    <!-- <link href="/styles/reset.css" rel="stylesheet"/> -->
     <link href="/styles/base.css" rel="stylesheet"/>
     <link href="/styles/layout.css" rel="stylesheet"/>
     <link href="/styles/modules.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Excellent Reading Adventure Test</h1>
+  <h1>Excellent Reading Adventure</h1>
   <div>
 
     <%- include('detail', {book: book}) %>
 
   </div>
+  <div>
+    <a href="/">Return To Your Complete List of Books</a>
+    <a href="/searches/new">Begin a New Search</a>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>
 

@@ -57,6 +57,7 @@ A books.sql file was created and used to create the books table in the postgres 
 - [Converting Date String to DATE Object](https://stackoverflow.com/questions/5619202/converting-a-string-to-a-date-in-javascript/5619263)
 - [Method to Create Date String in Format Desired](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toDateString)
 - [How to refer to an object's parameter without dot notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects)
+- [jQuery: .show()](https://api.jquery.com/show/)
 
 
 ## Time Log

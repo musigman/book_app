@@ -53,6 +53,8 @@ function deleteBookFromDB(request,response) {
 
 
 function renderIndividualBookDisplay(request,response) {
+  // Chance's guidance about how to use the same route for "view detail" as showing a book after adding it to the DB by using the ID we get back from entering it in the database.
+  
   // console.log(request.params);
   const id = request.params.id; 
   // console.log(request.params.id);
