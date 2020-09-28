@@ -30,10 +30,58 @@ app.get('/searches/new', renderSearchPage);
 app.post('/searches', handleNewSearch);
 app.get('/pages/error', handleErrorPage);
 app.get('/books/:id', renderIndividualBookDisplay);
+app.post('/books', addBookToDatabase);
 app.delete('/delete/:id', deleteBookFromDB);
 app.get('*', handleErrorPage);
 // app.get('/searches/show', handleSearchResults);
 
+function addBookToDatabase(request, response) {
+  //get info on which book user wants added
+  console.log('data passed for adding book: ', request.body);
+  const {title, authors, imageURL, description, isbn} = request.body;
+
+  //add book to DB
+  const sql = 'INSERT INTO books (title, author, image_url, description, isbn) VALUES ($1, $2, $3, $4, $5) RETURNING id;';
+
+  const safeValues = [title, authors, imageURL, description, isbn];
+
+  client.query(sql, safeValues)
+    .then( (results) => {
+      // get new primary ID for book just added to DB
+      console.log('after store new book to DB, return: ', results.rows[0]);
+      console.log('after store new book to DB, returns ID: ', results.rows[0].id);
+      // const bookID = results.rows[0].id;
+
+      // redirect user to the detailed book page
+      // response.status(200).send(results.rows[0].id);
+
+      response.status(200).redirect(`/books/${results.rows[0].id}`);
+
+
+    })
+    .catch( (error) => {
+      console.log('error adding new book to DB',error);
+      response.status(500).redirect('pages/error');    
+    });
+
+  // object
+  // title
+  // authors
+  // imageURL
+  // description
+  // isbn
+
+  // SQL row
+  // id
+  // title ,
+  // author (),
+  // image_url ,
+  // description ,
+  // isbn ()
+
+  //redirect user to detail page for selected book
+
+}
 
 function deleteBookFromDB(request,response) {
   const id = request.params.id;
@@ -53,6 +101,8 @@ function deleteBookFromDB(request,response) {
 
 
 function renderIndividualBookDisplay(request,response) {
+  // Chance's guidance about how to use the same route for "view detail" as showing a book after adding it to the DB by using the ID we get back from entering it in the database.
+  
   // console.log(request.params);
   const id = request.params.id; 
   // console.log(request.params.id);
@@ -147,6 +197,19 @@ function Book(bookObject){
   this.authors = bookObject.volumeInfo.authors ? bookObject.volumeInfo.authors : 'No author credited.';
   this.imageURL = bookObject.volumeInfo.imageLinks.smallThumbnail ? bookObject.volumeInfo.imageLinks.smallThumbnail : 'https://i.imgur.com/J5LVHEL.jpg';
   this.description = bookObject.volumeInfo.description ? bookObject.volumeInfo.description : "No summary available.";
+  this.isbn = bookObject.volumeInfo.isbn ? bookObject.volumeInfo.isbn : "ISBN not available.";
+  // IN SQL:
+  // author VARCHAR(255),
+  // image_url TEXT,
+  // to match SQL and have easier pass offs, we are going to chagne the names across MAYBE
+
+  // constructor
+  // title
+  // authors
+  //imageURL
+  //description
+  //isbn
+
 
   // let regex = /(http:)/;
   // if (regex.test(linkFromAPI)) {
